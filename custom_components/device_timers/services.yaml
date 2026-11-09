@@ -1,0 +1,24 @@
+extend:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          multiple: true
+    minutes:
+      required: false
+      example: 30
+      selector:
+        number:
+          min: 1
+          max: 1440
+          unit_of_measurement: min
+          mode: box
+
+cancel:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          multiple: true

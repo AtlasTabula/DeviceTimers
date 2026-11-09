@@ -1,0 +1,24 @@
+# Examples for the Device Timers card (custom:device-timers-card).
+# The card is loaded automatically by the integration - no HACS cards or
+# dashboard resources needed. Easiest: Edit dashboard > + Add card >
+# search "Device Timers" and pick devices in the visual editor.
+# Or paste ONE of the examples below into a Manual card.
+
+# 1) Every device timer, large rings
+type: custom:device-timers-card
+title: Device Timers
+
+# 2) Chosen devices, compact rows, extra +15 / +1h buttons
+# type: custom:device-timers-card
+# title: Heating
+# layout: list
+# devices:
+#   - climate.living_room_radiator
+#   - switch.towel_rail
+# quick_extend: [15, 60]
+
+# 3) Only timers that are running right now
+# type: custom:device-timers-card
+# title: Running now
+# layout: list
+# only_active: true

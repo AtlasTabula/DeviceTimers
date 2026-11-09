@@ -1,0 +1,88 @@
+{
+  "title": "Device Timers",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Device Timers",
+        "description": "After setup, use **Add device** on the Device Timers integration page to choose which devices turn off automatically."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Device Timers is already set up. Add devices from its integration page."
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "Device",
+      "initiate_flow": {
+        "user": "Add device"
+      },
+      "step": {
+        "user": {
+          "title": "Add a device",
+          "description": "When this device is turned on it will be turned off automatically after the default duration.",
+          "data": {
+            "target_entity": "Device",
+            "name": "Name",
+            "default_minutes": "Default duration",
+            "extend_minutes": "Extend adds"
+          },
+          "data_description": {
+            "name": "Optional. Defaults to the device's own name.",
+            "default_minutes": "How long the device stays on each time it is turned on.",
+            "extend_minutes": "How much time the Extend button adds."
+          }
+        },
+        "reconfigure": {
+          "title": "Timer settings",
+          "description": "Settings for {device}. Changes apply from the next time the device is turned on.",
+          "data": {
+            "name": "Name",
+            "default_minutes": "Default duration",
+            "extend_minutes": "Extend adds"
+          },
+          "data_description": {
+            "default_minutes": "How long the device stays on each time it is turned on.",
+            "extend_minutes": "How much time the Extend button adds."
+          }
+        }
+      },
+      "error": {
+        "already_configured": "This device already has a timer."
+      },
+      "abort": {
+        "reconfigure_successful": "Timer settings saved."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "remaining": { "name": "Time remaining" },
+      "ends_at": { "name": "Turns off at" }
+    },
+    "switch": {
+      "auto_off": { "name": "Auto-off" }
+    },
+    "button": {
+      "extend": { "name": "Extend" },
+      "cancel": { "name": "Cancel timer" }
+    }
+  },
+  "services": {
+    "extend": {
+      "name": "Extend timer",
+      "description": "Add time to a running device timer (or start one if the device is on without a timer).",
+      "fields": {
+        "entity_id": { "name": "Device", "description": "The controlled device, or any Device Timers entity." },
+        "minutes": { "name": "Minutes", "description": "Minutes to add. Defaults to the device's 'Extend adds' setting." }
+      }
+    },
+    "cancel": {
+      "name": "Cancel timer",
+      "description": "Stop the countdown and leave the device on.",
+      "fields": {
+        "entity_id": { "name": "Device", "description": "The controlled device, or any Device Timers entity." }
+      }
+    }
+  }
+}
