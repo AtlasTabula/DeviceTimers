@@ -2,6 +2,7 @@
   "domain": "device_timers",
   "name": "Device Timers",
   "after_dependencies": ["http", "frontend"],
+  "categories": ["helpers"],
   "codeowners": ["@AtlasTabula"],
   "config_flow": true,
   "dependencies": [],
