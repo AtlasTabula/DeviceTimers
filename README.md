@@ -1,3 +1,5 @@
+![Project Screenshot](custom_components/device_timers/brand/logo.png)
+
 # Device Timers for Home Assistant
 
 Auto-off timers for any device you can switch on and off: radiators, heaters, towel rails, fans, lights, dehumidifiers…
