@@ -103,7 +103,21 @@ data:
    If you get a 404, check **Settings → System → Logs** for lines mentioning "Device Timers".
 4. Hard-refresh the dashboard (Ctrl+F5).
    In the Companion app, go to **Settings → Companion app → Debugging → Reset frontend cache** and reopen the app.
-5. If it still won't load: go to **Settings → Dashboards → ⋮ → Resources → Add resource**, enter `/device_timers/device-timers-card.js?v=2.0.1` and set the type to **JavaScript module**.
+5. If it still won't load: go to **Settings → Dashboards → ⋮ → Resources → Add resource**, enter `/device_timers/device-timers-card.js?v=2.0.2` and set the type to **JavaScript module**.
+
+## Languages
+
+The integration's setup screens, entity names and actions, and the dashboard card, are available in:
+
+English · Polish (Polski) · Bulgarian (Български) · French (Français) · German (Deutsch)
+
+Home Assistant uses the language from each user's profile, and falls back to English for any other language.
+Entity names are set when a device is added, so existing entities keep the name they were created with.
+
+**Adding a language:**
+1. Copy `custom_components/device_timers/translations/en.json` to `<code>.json` (e.g. `es.json`) and translate the values.
+2. In `custom_components/device_timers/frontend/device-timers-card.js`, copy the `en` block in `STRINGS` to a new `<code>` block and translate it.
+3. Leave `{placeholders}` such as `{device}`, `{minutes}` and `{time}` unchanged, and keep "Device Timers" as it is.
 
 ## Upgrading from version 1 (helpers)
 

@@ -1,0 +1,88 @@
+{
+  "title": "Device Timers",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer Device Timers",
+        "description": "Une fois la configuration terminée, utilisez **Ajouter un appareil** sur la page de l'intégration Device Timers pour choisir les appareils à éteindre automatiquement."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Device Timers est déjà configuré. Ajoutez des appareils depuis la page de l'intégration."
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "Appareil",
+      "initiate_flow": {
+        "user": "Ajouter un appareil"
+      },
+      "step": {
+        "user": {
+          "title": "Ajouter un appareil",
+          "description": "Lorsque cet appareil est allumé, il sera éteint automatiquement après la durée par défaut.",
+          "data": {
+            "target_entity": "Appareil",
+            "name": "Nom",
+            "default_minutes": "Durée par défaut",
+            "extend_minutes": "Prolongation de"
+          },
+          "data_description": {
+            "name": "Facultatif. Par défaut, le nom de l'appareil est utilisé.",
+            "default_minutes": "Durée pendant laquelle l'appareil reste allumé à chaque mise en marche.",
+            "extend_minutes": "Temps ajouté par le bouton Prolonger."
+          }
+        },
+        "reconfigure": {
+          "title": "Paramètres du minuteur",
+          "description": "Paramètres pour {device}. Les modifications s'appliquent à la prochaine mise en marche de l'appareil.",
+          "data": {
+            "name": "Nom",
+            "default_minutes": "Durée par défaut",
+            "extend_minutes": "Prolongation de"
+          },
+          "data_description": {
+            "default_minutes": "Durée pendant laquelle l'appareil reste allumé à chaque mise en marche.",
+            "extend_minutes": "Temps ajouté par le bouton Prolonger."
+          }
+        }
+      },
+      "error": {
+        "already_configured": "Cet appareil a déjà un minuteur."
+      },
+      "abort": {
+        "reconfigure_successful": "Paramètres du minuteur enregistrés."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "remaining": { "name": "Temps restant" },
+      "ends_at": { "name": "Arrêt à" }
+    },
+    "switch": {
+      "auto_off": { "name": "Arrêt automatique" }
+    },
+    "button": {
+      "extend": { "name": "Prolonger" },
+      "cancel": { "name": "Annuler le minuteur" }
+    }
+  },
+  "services": {
+    "extend": {
+      "name": "Prolonger le minuteur",
+      "description": "Ajoute du temps au minuteur en cours d'un appareil (ou en démarre un si l'appareil est allumé sans minuteur).",
+      "fields": {
+        "entity_id": { "name": "Appareil", "description": "L'appareil contrôlé, ou n'importe quelle entité Device Timers." },
+        "minutes": { "name": "Minutes", "description": "Minutes à ajouter. Par défaut, le réglage « Prolongation de » de l'appareil est utilisé." }
+      }
+    },
+    "cancel": {
+      "name": "Annuler le minuteur",
+      "description": "Arrête le compte à rebours et laisse l'appareil allumé.",
+      "fields": {
+        "entity_id": { "name": "Appareil", "description": "L'appareil contrôlé, ou n'importe quelle entité Device Timers." }
+      }
+    }
+  }
+}

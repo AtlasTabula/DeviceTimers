@@ -2,13 +2,14 @@
   "domain": "device_timers",
   "name": "Device Timers",
   "after_dependencies": ["http", "frontend"],
-  "codeowners": [],
+  "codeowners": ["@AtlasTabula"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/your-name/device_timers",
+  "documentation": "https://github.com/AtlasTabula/DeviceTimers",
   "integration_type": "service",
   "iot_class": "calculated",
+  "issue_tracker": "https://github.com/AtlasTabula/DeviceTimers/issues",
   "requirements": [],
   "single_config_entry": true,
-  "version": "2.0.1"
+  "version": "2.0.2"
 }

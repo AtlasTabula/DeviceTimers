@@ -12,7 +12,7 @@
  *   quick_extend: [15, 60]        # extra "+N min" buttons (the device's own Extend step is always shown)
  */
 
-const CARD_VERSION = "2.0.1";
+const CARD_VERSION = "2.0.2";
 const DOMAIN = "device_timers";
 const RING_R = 42;
 const RING_C = 2 * Math.PI * RING_R;
@@ -44,6 +44,177 @@ function formatRemaining(secs) {
 function formatClock(hass, date) {
   const locale = hass?.locale?.language || undefined;
   return date.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" });
+}
+
+// ------------------------------------------------------------ translations
+// The card follows the language set in the user's Home Assistant profile.
+// To add a language, copy the "en" block, translate the values and keep the
+// {placeholders} unchanged.
+
+const STRINGS = {
+  en: {
+    no_running: "No timers running",
+    none_found: "No device timers found. Add devices under {path}.",
+    path: "Settings → Devices & services → Device Timers",
+    not_set_up: "Not set up in Device Timers",
+    turn_off: "Turn off",
+    turn_on_for: "Turn on for {minutes} min",
+    add_minutes: "Add {minutes} minutes",
+    stop_keep_on: "Stop timer, keep on",
+    na: "N/A",
+    on: "On",
+    off: "Off",
+    unavailable: "Unavailable",
+    off_at: "Off at {time}",
+    no_timer: "No timer",
+    auto_off_disabled: "Auto-off disabled",
+    min_timer: "{minutes} min timer",
+    chip_m: "+{n}m",
+    chip_h: "+{n}h",
+    ed_title: "Title",
+    ed_devices: "Devices (leave empty to show all)",
+    ed_layout: "Layout",
+    ed_only_active: "Only show running timers",
+    ed_quick: "Extra extend buttons (each device's own Extend step is always shown)",
+    ed_grid: "Grid (large rings)",
+    ed_list: "List (compact rows)",
+    ed_plus_min: "+{minutes} min",
+    description: "Turn devices on, see the time left on their auto-off timers, and extend them.",
+  },
+  pl: {
+    no_running: "Brak działających timerów",
+    none_found: "Nie znaleziono timerów urządzeń. Dodaj urządzenia w: {path}.",
+    path: "Ustawienia → Urządzenia oraz usługi → Device Timers",
+    not_set_up: "Nie skonfigurowano w Device Timers",
+    turn_off: "Wyłącz",
+    turn_on_for: "Włącz na {minutes} min",
+    add_minutes: "Dodaj {minutes} min",
+    stop_keep_on: "Zatrzymaj timer, pozostaw włączone",
+    na: "B/D",
+    on: "Wł.",
+    off: "Wył.",
+    unavailable: "Niedostępne",
+    off_at: "Wyłączenie o {time}",
+    no_timer: "Bez timera",
+    auto_off_disabled: "Automatyczne wyłączanie nieaktywne",
+    min_timer: "Timer {minutes} min",
+    chip_m: "+{n} min",
+    chip_h: "+{n} h",
+    ed_title: "Tytuł",
+    ed_devices: "Urządzenia (pozostaw puste, aby pokazać wszystkie)",
+    ed_layout: "Układ",
+    ed_only_active: "Pokazuj tylko działające timery",
+    ed_quick: "Dodatkowe przyciski przedłużenia (przycisk Przedłuż każdego urządzenia jest zawsze widoczny)",
+    ed_grid: "Siatka (duże pierścienie)",
+    ed_list: "Lista (kompaktowe wiersze)",
+    ed_plus_min: "+{minutes} min",
+    description: "Włączaj urządzenia, sprawdzaj czas pozostały do automatycznego wyłączenia i przedłużaj go.",
+  },
+  bg: {
+    no_running: "Няма работещи таймери",
+    none_found: "Не са намерени таймери за устройства. Добавете устройства от {path}.",
+    path: "Настройки → Устройства и услуги → Device Timers",
+    not_set_up: "Не е настроено в Device Timers",
+    turn_off: "Изключване",
+    turn_on_for: "Включване за {minutes} мин",
+    add_minutes: "Добавяне на {minutes} мин",
+    stop_keep_on: "Спиране на таймера, устройството остава включено",
+    na: "Н/Д",
+    on: "Вкл.",
+    off: "Изкл.",
+    unavailable: "Недостъпно",
+    off_at: "Изключване в {time}",
+    no_timer: "Без таймер",
+    auto_off_disabled: "Автоматичното изключване е спряно",
+    min_timer: "Таймер {minutes} мин",
+    chip_m: "+{n} мин",
+    chip_h: "+{n} ч",
+    ed_title: "Заглавие",
+    ed_devices: "Устройства (оставете празно, за да се показват всички)",
+    ed_layout: "Изглед",
+    ed_only_active: "Показване само на работещите таймери",
+    ed_quick: "Допълнителни бутони за удължаване (бутонът „Удължи“ на всяко устройство се показва винаги)",
+    ed_grid: "Мрежа (големи пръстени)",
+    ed_list: "Списък (компактни редове)",
+    ed_plus_min: "+{minutes} мин",
+    description: "Включвайте устройства, вижте оставащото време до автоматичното им изключване и го удължавайте.",
+  },
+  fr: {
+    no_running: "Aucun minuteur en cours",
+    none_found: "Aucun minuteur d'appareil trouvé. Ajoutez des appareils dans {path}.",
+    path: "Paramètres → Appareils et services → Device Timers",
+    not_set_up: "Non configuré dans Device Timers",
+    turn_off: "Éteindre",
+    turn_on_for: "Allumer pour {minutes} min",
+    add_minutes: "Ajouter {minutes} minutes",
+    stop_keep_on: "Arrêter le minuteur, laisser allumé",
+    na: "N/D",
+    on: "Allumé",
+    off: "Éteint",
+    unavailable: "Indisponible",
+    off_at: "Arrêt à {time}",
+    no_timer: "Sans minuteur",
+    auto_off_disabled: "Arrêt automatique désactivé",
+    min_timer: "Minuteur de {minutes} min",
+    chip_m: "+{n} min",
+    chip_h: "+{n} h",
+    ed_title: "Titre",
+    ed_devices: "Appareils (laisser vide pour tout afficher)",
+    ed_layout: "Disposition",
+    ed_only_active: "Afficher uniquement les minuteurs en cours",
+    ed_quick: "Boutons de prolongation supplémentaires (le bouton Prolonger de chaque appareil est toujours affiché)",
+    ed_grid: "Grille (grands anneaux)",
+    ed_list: "Liste (lignes compactes)",
+    ed_plus_min: "+{minutes} min",
+    description: "Allumez des appareils, voyez le temps restant avant leur arrêt automatique et prolongez-le.",
+  },
+  de: {
+    no_running: "Keine laufenden Timer",
+    none_found: "Keine Geräte-Timer gefunden. Füge Geräte unter {path} hinzu.",
+    path: "Einstellungen → Geräte & Dienste → Device Timers",
+    not_set_up: "Nicht in Device Timers eingerichtet",
+    turn_off: "Ausschalten",
+    turn_on_for: "Für {minutes} min einschalten",
+    add_minutes: "{minutes} Minuten hinzufügen",
+    stop_keep_on: "Timer stoppen, eingeschaltet lassen",
+    na: "k. A.",
+    on: "An",
+    off: "Aus",
+    unavailable: "Nicht verfügbar",
+    off_at: "Aus um {time}",
+    no_timer: "Kein Timer",
+    auto_off_disabled: "Automatisches Ausschalten deaktiviert",
+    min_timer: "{minutes}-min-Timer",
+    chip_m: "+{n} min",
+    chip_h: "+{n} h",
+    ed_title: "Titel",
+    ed_devices: "Geräte (leer lassen, um alle anzuzeigen)",
+    ed_layout: "Layout",
+    ed_only_active: "Nur laufende Timer anzeigen",
+    ed_quick: "Zusätzliche Verlängern-Tasten (die eigene Verlängern-Taste jedes Geräts wird immer angezeigt)",
+    ed_grid: "Raster (große Ringe)",
+    ed_list: "Liste (kompakte Zeilen)",
+    ed_plus_min: "+{minutes} min",
+    description: "Schalte Geräte ein, sieh die Restzeit bis zum automatischen Ausschalten und verlängere sie.",
+  },
+};
+
+/** "pt-BR" -> "pt-br" if translated, else "pt", else "en". */
+function resolveLanguage(language) {
+  const lang = String(language || "en").toLowerCase();
+  if (STRINGS[lang]) return lang;
+  const base = lang.split(/[-_]/)[0];
+  return STRINGS[base] ? base : "en";
+}
+
+function languageOf(hass) {
+  return resolveLanguage(hass?.locale?.language || hass?.language || document.documentElement.lang);
+}
+
+/** Translated string with {placeholders} filled in (plain text - escape before inserting as HTML). */
+function localize(hass, key, vars = {}) {
+  const text = STRINGS[languageOf(hass)][key] ?? STRINGS.en[key] ?? key;
+  return text.replace(/\{(\w+)\}/g, (_, name) => String(vars[name] ?? ""));
 }
 
 /** All Device Timers "Time remaining" sensors, keyed by the controlled device entity_id. */
@@ -158,7 +329,7 @@ class DeviceTimersCard extends HTMLElement {
   _render() {
     if (!this._config || !this._hass) return;
     const items = this._items();
-    const signature = JSON.stringify([this._config, items, this._hass.themes?.darkMode]);
+    const signature = JSON.stringify([this._config, items, this._hass.themes?.darkMode, languageOf(this._hass)]);
     if (signature === this._signature) return;
     this._signature = signature;
 
@@ -168,11 +339,11 @@ class DeviceTimersCard extends HTMLElement {
     let body;
     if (!items.length) {
       const anyTimers = Object.keys(findTimers(this._hass)).length > 0;
-      body = `<div class="empty">${
+      body = `<div class="empty">${esc(
         cfg.only_active && anyTimers
-          ? "No timers running"
-          : "No device timers found. Add devices under Settings → Devices &amp; services → Device Timers."
-      }</div>`;
+          ? this._t("no_running")
+          : this._t("none_found", { path: this._t("path") })
+      )}</div>`;
     } else {
       body = `<div class="items ${cfg.layout === "list" ? "list" : "grid"}">${items
         .map((it) => this._renderItem(it, quick))
@@ -192,7 +363,7 @@ class DeviceTimersCard extends HTMLElement {
     if (it.missing) {
       return `<div class="item missing"><ha-icon icon="mdi:timer-alert-outline"></ha-icon>
         <div class="text"><div class="name">${esc(it.target)}</div>
-        <div class="sub">Not set up in Device Timers</div></div></div>`;
+        <div class="sub">${esc(this._t("not_set_up"))}</div></div></div>`;
     }
     const state = it.unavailable ? "unavailable" : it.active ? "active" : it.on ? "on" : "off";
     const steps = [...new Set([it.extendMinutes, ...quick].filter((n) => n > 0))].sort((a, b) => a - b);
@@ -202,12 +373,14 @@ class DeviceTimersCard extends HTMLElement {
       ? steps
           .map(
             (m) => `<button class="chip" data-action="extend" data-target="${t}" data-minutes="${m}"
-              title="Add ${m} minutes">+${m >= 60 && m % 60 === 0 ? `${m / 60}h` : `${m}m`}</button>`
+              title="${esc(this._t("add_minutes", { minutes: m }))}">${esc(
+                m >= 60 && m % 60 === 0 ? this._t("chip_h", { n: m / 60 }) : this._t("chip_m", { n: m })
+              )}</button>`
           )
           .join("")
       : "";
     const cancelButton = it.active
-      ? `<button class="chip icon" data-action="cancel" data-target="${t}" title="Stop timer, keep on">
+      ? `<button class="chip icon" data-action="cancel" data-target="${t}" title="${esc(this._t("stop_keep_on"))}">
            <ha-icon icon="mdi:timer-off-outline"></ha-icon></button>`
       : "";
 
@@ -215,7 +388,7 @@ class DeviceTimersCard extends HTMLElement {
       <div class="item ${state}" data-target="${t}" data-ends="${it.endsAt ? it.endsAt.getTime() : ""}"
            data-total="${it.totalMinutes * 60}">
         <button class="ring" data-action="toggle" data-target="${t}"
-                title="${it.on ? "Turn off" : `Turn on for ${it.defaultMinutes} min`}"
+                title="${esc(it.on ? this._t("turn_off") : this._t("turn_on_for", { minutes: it.defaultMinutes }))}"
                 ${it.unavailable ? "disabled" : ""}>
           <svg viewBox="0 0 100 100" aria-hidden="true">
             <circle class="track" cx="50" cy="50" r="${RING_R}"></circle>
@@ -235,17 +408,23 @@ class DeviceTimersCard extends HTMLElement {
       </div>`;
   }
 
+  _t(key, vars) {
+    return localize(this._hass, key, vars);
+  }
+
   _centerText(it) {
-    if (it.unavailable) return "N/A";
+    if (it.unavailable) return esc(this._t("na"));
     if (it.active) return ""; // filled in by the countdown
-    return it.on ? "On" : "Off";
+    return esc(this._t(it.on ? "on" : "off"));
   }
 
   _subText(it) {
-    if (it.unavailable) return "Unavailable";
-    if (it.active && it.endsAt) return `Off at ${esc(formatClock(this._hass, it.endsAt))}`;
-    if (it.on) return it.autoOff ? "No timer" : "Auto-off disabled";
-    return `${it.defaultMinutes} min timer`;
+    let text;
+    if (it.unavailable) text = this._t("unavailable");
+    else if (it.active && it.endsAt) text = this._t("off_at", { time: formatClock(this._hass, it.endsAt) });
+    else if (it.on) text = this._t(it.autoOff ? "no_timer" : "auto_off_disabled");
+    else text = this._t("min_timer", { minutes: it.defaultMinutes });
+    return esc(text);
   }
 
   /** Runs every second: smooth countdown text and ring without re-rendering. */
@@ -388,8 +567,8 @@ class DeviceTimersCardEditor extends HTMLElement {
               select: {
                 mode: "dropdown",
                 options: [
-                  { value: "grid", label: "Grid (large rings)" },
-                  { value: "list", label: "List (compact rows)" },
+                  { value: "grid", label: localize(this._hass, "ed_grid") },
+                  { value: "list", label: localize(this._hass, "ed_list") },
                 ],
               },
             },
@@ -404,7 +583,10 @@ class DeviceTimersCardEditor extends HTMLElement {
             multiple: true,
             custom_value: true,
             mode: "list",
-            options: ["5", "10", "15", "30", "45", "60", "90", "120"].map((v) => ({ value: v, label: `+${v} min` })),
+            options: ["5", "10", "15", "30", "45", "60", "90", "120"].map((v) => ({
+              value: v,
+              label: localize(this._hass, "ed_plus_min", { minutes: v }),
+            })),
           },
         },
       },
@@ -415,14 +597,14 @@ class DeviceTimersCardEditor extends HTMLElement {
     if (!this._hass || !this._config) return;
     if (!this._form) {
       this._form = document.createElement("ha-form");
-      this._form.computeLabel = (s) =>
-        ({
-          title: "Title",
-          devices: "Devices (leave empty to show all)",
-          layout: "Layout",
-          only_active: "Only show running timers",
-          quick_extend: "Extra extend buttons (each device's own Extend step is always shown)",
-        })[s.name] ?? s.name;
+      const labelKeys = {
+        title: "ed_title",
+        devices: "ed_devices",
+        layout: "ed_layout",
+        only_active: "ed_only_active",
+        quick_extend: "ed_quick",
+      };
+      this._form.computeLabel = (s) => (labelKeys[s.name] ? localize(this._hass, labelKeys[s.name]) : s.name);
       this._form.addEventListener("value-changed", (ev) => {
         const value = { ...ev.detail.value };
         if (Array.isArray(value.quick_extend)) {
@@ -451,7 +633,7 @@ if (!customElements.get("device-timers-card")) {
   window.customCards.push({
     type: "device-timers-card",
     name: "Device Timers",
-    description: "Turn devices on, see the time left on their auto-off timers, and extend them.",
+    description: STRINGS[resolveLanguage(document.documentElement.lang)].description,
     preview: true,
   });
   console.info(`%c DEVICE-TIMERS-CARD %c v${CARD_VERSION} `, "color:white;background:#03a9f4;font-weight:700", "");

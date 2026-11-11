@@ -1,0 +1,88 @@
+{
+  "title": "Device Timers",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Device Timers einrichten",
+        "description": "Verwende nach der Einrichtung **Gerät hinzufügen** auf der Integrationsseite von Device Timers, um auszuwählen, welche Geräte automatisch ausgeschaltet werden."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Device Timers ist bereits eingerichtet. Füge Geräte über die Integrationsseite hinzu."
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "Gerät",
+      "initiate_flow": {
+        "user": "Gerät hinzufügen"
+      },
+      "step": {
+        "user": {
+          "title": "Gerät hinzufügen",
+          "description": "Wenn dieses Gerät eingeschaltet wird, wird es nach der Standarddauer automatisch ausgeschaltet.",
+          "data": {
+            "target_entity": "Gerät",
+            "name": "Name",
+            "default_minutes": "Standarddauer",
+            "extend_minutes": "Verlängern um"
+          },
+          "data_description": {
+            "name": "Optional. Standardmäßig wird der Name des Geräts verwendet.",
+            "default_minutes": "Wie lange das Gerät nach jedem Einschalten eingeschaltet bleibt.",
+            "extend_minutes": "Wie viel Zeit die Taste „Verlängern“ hinzufügt."
+          }
+        },
+        "reconfigure": {
+          "title": "Timer-Einstellungen",
+          "description": "Einstellungen für {device}. Änderungen gelten ab dem nächsten Einschalten des Geräts.",
+          "data": {
+            "name": "Name",
+            "default_minutes": "Standarddauer",
+            "extend_minutes": "Verlängern um"
+          },
+          "data_description": {
+            "default_minutes": "Wie lange das Gerät nach jedem Einschalten eingeschaltet bleibt.",
+            "extend_minutes": "Wie viel Zeit die Taste „Verlängern“ hinzufügt."
+          }
+        }
+      },
+      "error": {
+        "already_configured": "Dieses Gerät hat bereits einen Timer."
+      },
+      "abort": {
+        "reconfigure_successful": "Timer-Einstellungen gespeichert."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "remaining": { "name": "Verbleibende Zeit" },
+      "ends_at": { "name": "Ausschalten um" }
+    },
+    "switch": {
+      "auto_off": { "name": "Automatisches Ausschalten" }
+    },
+    "button": {
+      "extend": { "name": "Verlängern" },
+      "cancel": { "name": "Timer abbrechen" }
+    }
+  },
+  "services": {
+    "extend": {
+      "name": "Timer verlängern",
+      "description": "Fügt einem laufenden Geräte-Timer Zeit hinzu (oder startet einen, wenn das Gerät ohne Timer eingeschaltet ist).",
+      "fields": {
+        "entity_id": { "name": "Gerät", "description": "Das gesteuerte Gerät oder eine beliebige Device-Timers-Entität." },
+        "minutes": { "name": "Minuten", "description": "Hinzuzufügende Minuten. Standardmäßig wird die Einstellung „Verlängern um“ des Geräts verwendet." }
+      }
+    },
+    "cancel": {
+      "name": "Timer abbrechen",
+      "description": "Stoppt den Countdown und lässt das Gerät eingeschaltet.",
+      "fields": {
+        "entity_id": { "name": "Gerät", "description": "Das gesteuerte Gerät oder eine beliebige Device-Timers-Entität." }
+      }
+    }
+  }
+}

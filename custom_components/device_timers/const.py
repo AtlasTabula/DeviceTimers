@@ -3,7 +3,7 @@
 from homeassistant.const import Platform
 
 DOMAIN = "device_timers"
-VERSION = "2.0.1"
+VERSION = "2.0.2"
 
 # Each controlled device is a config subentry of this type.
 SUBENTRY_DEVICE = "device"

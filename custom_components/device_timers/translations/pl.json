@@ -1,0 +1,88 @@
+{
+  "title": "Device Timers",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Konfiguracja Device Timers",
+        "description": "Po zakończeniu konfiguracji użyj przycisku **Dodaj urządzenie** na stronie integracji Device Timers, aby wybrać, które urządzenia mają się wyłączać automatycznie."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Device Timers jest już skonfigurowane. Urządzenia dodasz na stronie integracji."
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "Urządzenie",
+      "initiate_flow": {
+        "user": "Dodaj urządzenie"
+      },
+      "step": {
+        "user": {
+          "title": "Dodaj urządzenie",
+          "description": "Po włączeniu to urządzenie zostanie automatycznie wyłączone po upływie domyślnego czasu.",
+          "data": {
+            "target_entity": "Urządzenie",
+            "name": "Nazwa",
+            "default_minutes": "Domyślny czas działania",
+            "extend_minutes": "Przedłużenie o"
+          },
+          "data_description": {
+            "name": "Opcjonalnie. Domyślnie używana jest nazwa urządzenia.",
+            "default_minutes": "Jak długo urządzenie pozostaje włączone po każdym włączeniu.",
+            "extend_minutes": "Ile czasu dodaje przycisk Przedłuż."
+          }
+        },
+        "reconfigure": {
+          "title": "Ustawienia timera",
+          "description": "Ustawienia dla {device}. Zmiany zaczną obowiązywać przy następnym włączeniu urządzenia.",
+          "data": {
+            "name": "Nazwa",
+            "default_minutes": "Domyślny czas działania",
+            "extend_minutes": "Przedłużenie o"
+          },
+          "data_description": {
+            "default_minutes": "Jak długo urządzenie pozostaje włączone po każdym włączeniu.",
+            "extend_minutes": "Ile czasu dodaje przycisk Przedłuż."
+          }
+        }
+      },
+      "error": {
+        "already_configured": "To urządzenie ma już timer."
+      },
+      "abort": {
+        "reconfigure_successful": "Ustawienia timera zostały zapisane."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "remaining": { "name": "Pozostały czas" },
+      "ends_at": { "name": "Wyłączenie o" }
+    },
+    "switch": {
+      "auto_off": { "name": "Automatyczne wyłączanie" }
+    },
+    "button": {
+      "extend": { "name": "Przedłuż" },
+      "cancel": { "name": "Anuluj timer" }
+    }
+  },
+  "services": {
+    "extend": {
+      "name": "Przedłuż timer",
+      "description": "Dodaje czas do działającego timera urządzenia (lub uruchamia timer, jeśli urządzenie jest włączone bez niego).",
+      "fields": {
+        "entity_id": { "name": "Urządzenie", "description": "Sterowane urządzenie lub dowolna encja Device Timers." },
+        "minutes": { "name": "Minuty", "description": "Liczba minut do dodania. Domyślnie używane jest ustawienie „Przedłużenie o” danego urządzenia." }
+      }
+    },
+    "cancel": {
+      "name": "Anuluj timer",
+      "description": "Zatrzymuje odliczanie i pozostawia urządzenie włączone.",
+      "fields": {
+        "entity_id": { "name": "Urządzenie", "description": "Sterowane urządzenie lub dowolna encja Device Timers." }
+      }
+    }
+  }
+}
